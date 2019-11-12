@@ -13,7 +13,7 @@ public class SistemaBibliotecaIU {
 		comandos.put("obs", new ComandoObservar());
 		comandos.put("liv", new ComandoConsultarLivro());
 		comandos.put("usu", new ComandoConsultarUsuario());
-		comandos.put("ntf", new ComandoConsultarNotificacoesProfessor());
+		comandos.put("ntf", new ComandoConsultarQtdNotificacoes());
 		
         Scanner s = null;
 

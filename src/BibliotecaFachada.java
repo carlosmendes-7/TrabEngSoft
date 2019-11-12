@@ -109,8 +109,11 @@ public class BibliotecaFachada {
 		//TODO
 	}
 	
-	public static void consultarNotificacoesProfessor(String idUser) {
+	public static void consultarQtdNotificacoes(String idUser) {
 		Usuario user = getUserByID(idUser);
-		System.out.println("Usuario foi notificado " + ((AcompanhadorDeNotificacoes) user).getQtdNotificacoes() + "vezes.");
+		if(user instanceof AcompanhadorDeNotificacoes)
+			System.out.println("Usuario foi notificado " + ((AcompanhadorDeNotificacoes) user).getQtdNotificacoes() + "vezes.");
+		else
+			System.out.println("Usuario não possui prerrogativa de acompanhar notificacoes!");
 	}
 }

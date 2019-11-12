@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class ComandoConsultarNotificacoesProfessor extends Comando {
+public class ComandoConsultarQtdNotificacoes extends Comando {
 
 	@Override
 	public String executar(ArrayList<String> args) {
