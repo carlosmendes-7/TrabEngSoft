@@ -84,16 +84,19 @@ public class BibliotecaFachada {
 	public static void devolver(String idUser, String idLivro) {
 		Usuario user = getUserByID(idUser);
 		Livro livro = getLivroByID(idLivro);
+		//TODO
 	}
 	
 	public static void reservar(String idUser, String idLivro) {
 		Usuario user = getUserByID(idUser);
 		Livro livro = getLivroByID(idLivro);
+		//TODO
 	}
 	
 	public static void observar(String idUser, String idLivro) {
 		Usuario user = getUserByID(idUser);
 		Livro livro = getLivroByID(idLivro);
+		//TODO
 	}
 	
 	public static void consultarLivro(String idLivro) {
@@ -103,6 +106,7 @@ public class BibliotecaFachada {
 	
 	public static void consultarUsuario(String idUser) {
 		Usuario user = getUserByID(idUser);
+		//TODO
 	}
 	
 	public static void consultarNotificacoesProfessor(String idUser) {

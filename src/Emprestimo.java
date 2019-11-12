@@ -7,13 +7,12 @@ public class Emprestimo {
 	private Date dataDevolucaoDevida;
 	private Date dataDevolucaoEfetiva;
 	
-	public Emprestimo(Usuario user, Livro livro, Date dataEmprestimo, Date dataDevolucaoDevida,
-			Date dataDevolucaoEfetiva) {
+	public Emprestimo(Usuario user, Livro livro, Date dataEmprestimo, Date dataDevolucaoDevida) {
 		this.user = user;
 		this.livro = livro;
 		this.dataEmprestimo = dataEmprestimo;
 		this.dataDevolucaoDevida = dataDevolucaoDevida;
-		this.dataDevolucaoEfetiva = dataDevolucaoEfetiva;
+		this.dataDevolucaoEfetiva = null;
 	}
 	public Usuario getUser() {
 		return user;
