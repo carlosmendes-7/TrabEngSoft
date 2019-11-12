@@ -74,8 +74,11 @@ public class Usuario {
 			}		
 		}
 		//TODO: criar emprestimo com data de devolucao baseada na qtd de dias do TipoUsuario
-		Emprestimo emprestimo = new Emprestimo(this, livro, new Date(), 
-		return null;
+		Emprestimo emprestimo = new Emprestimo(this, livro, new Date(), ;
+				
+		emprestimosAtuais.add(emprestimo);
+		
+		return emprestimo;
 	}
 	
 	
