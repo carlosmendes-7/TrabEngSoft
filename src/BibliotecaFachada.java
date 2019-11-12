@@ -4,8 +4,8 @@ import java.util.List;
 
 public class BibliotecaFachada {
 	private static BibliotecaFachada instancia;
-	private static List<Usuario> usuarios = new ArrayList<Usuario>();
-	private static List<Livro> livros = new ArrayList<Livro>();
+	private List<Usuario> usuarios = new ArrayList<Usuario>();
+	private List<Livro> livros = new ArrayList<Livro>();
 	
 	private BibliotecaFachada() {
 		usuarios.add(new Usuario("123", "João da Silva", new Graduacao()));
@@ -39,7 +39,7 @@ public class BibliotecaFachada {
 		getLivroByID("400").addExemplar(new Exemplar("09"));
 	}
 	
-	private static Usuario getUserByID(String idUser) {
+	private Usuario getUserByID(String idUser) {
 		Iterator<Usuario> it = usuarios.iterator();
 		while(it.hasNext()) {
 			Usuario user = it.next();
@@ -49,7 +49,7 @@ public class BibliotecaFachada {
 		return null;
 	}
 	
-	private static Livro getLivroByID(String idLivro) {
+	private Livro getLivroByID(String idLivro) {
 		Iterator<Livro> it = livros.iterator();
 		while(it.hasNext()) {
 			Livro livro = it.next();
@@ -66,7 +66,7 @@ public class BibliotecaFachada {
 		return instancia;
 	}
 	
-	public static void emprestar(String idUser, String idLivro) {
+	public void emprestar(String idUser, String idLivro) {
 		final String fimDeLinha = System.getProperty("line.separator");
 		Usuario user = getUserByID(idUser);
 		Livro livro = getLivroByID(idLivro);
@@ -81,35 +81,35 @@ public class BibliotecaFachada {
 		}
 	}
 	
-	public static void devolver(String idUser, String idLivro) {
+	public void devolver(String idUser, String idLivro) {
 		Usuario user = getUserByID(idUser);
 		Livro livro = getLivroByID(idLivro);
 		//TODO
 	}
 	
-	public static void reservar(String idUser, String idLivro) {
+	public void reservar(String idUser, String idLivro) {
 		Usuario user = getUserByID(idUser);
 		Livro livro = getLivroByID(idLivro);
 		//TODO
 	}
 	
-	public static void observar(String idUser, String idLivro) {
+	public void observar(String idUser, String idLivro) {
 		Usuario user = getUserByID(idUser);
 		Livro livro = getLivroByID(idLivro);
 		//TODO
 	}
 	
-	public static void consultarLivro(String idLivro) {
+	public void consultarLivro(String idLivro) {
 		Livro livro = getLivroByID(idLivro);
 		System.out.println(livro);
 	}
 	
-	public static void consultarUsuario(String idUser) {
+	public void consultarUsuario(String idUser) {
 		Usuario user = getUserByID(idUser);
 		//TODO
 	}
 	
-	public static void consultarQtdNotificacoes(String idUser) {
+	public void consultarQtdNotificacoes(String idUser) {
 		Usuario user = getUserByID(idUser);
 		if(user instanceof AcompanhadorDeNotificacoes)
 			System.out.println("Usuario foi notificado " + ((AcompanhadorDeNotificacoes) user).getQtdNotificacoes() + "vezes.");
