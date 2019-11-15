@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -74,13 +75,20 @@ public class Usuario {
 			}		
 		}
 		//TODO: criar emprestimo com data de devolucao baseada na qtd de dias do TipoUsuario
-		Emprestimo emprestimo = new Emprestimo(this, livro, new Date(), new Date ;
-				
+		Emprestimo emprestimo = new Emprestimo(this, livro, new Date(), dataEntrega(new Date(), tipo.getTempoEmprestimo()));
+		
 		emprestimosAtuais.add(emprestimo);
 		
 		return emprestimo;
 	}
 	
-	
+	 public Date dataEntrega(Date dt, int entrega) {
+		 Calendar calendario = Calendar.getInstance();
+		 calendario.setTime(dt); 
+		 calendario.add(Calendar.DATE, entrega);
+		 calendario.set(Calendar.HOUR_OF_DAY, 23);
+		 dt =  calendario.getTime();
+		 return dt;
+	 }
 
 }

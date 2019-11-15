@@ -83,6 +83,9 @@ public class SistemaBibliotecaIU {
             		arg.add(string.next());
             		nft.executar(arg, BibliotecaFachada.getInstance());
                	}
+               	else if (servico.equals("sair")) {
+               		System.out.println("Encerrando sistema da Biblioteca...");
+               	}
                	else System.out.println("Escolha um comando válido, ou digite 'sair' para finalizar");
             } while (!servico.equals("sair"));
 	}
