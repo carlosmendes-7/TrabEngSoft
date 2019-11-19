@@ -18,7 +18,8 @@ public abstract class Observavel {
 	protected void notificarObservadores() {
 		Iterator<Observador> it = observadores.iterator();
 		while(it.hasNext()) {
-			it.next().atualizar(this);
+			Observador ob = it.next();
+			ob.atualizar(this);
 		}
 	}
 

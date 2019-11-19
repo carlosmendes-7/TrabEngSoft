@@ -100,15 +100,32 @@ public class BibliotecaFachada {
 	}
 	
 	public void reservar(String idUser, String idLivro) {
+		final String fimDeLinha = System.getProperty("line.separator");		
 		Usuario user = getUserByID(idUser);
 		Livro livro = getLivroByID(idLivro);
-		//TODO
+		
+		if (user.temReservaPara(livro)) {
+			System.out.println("Não foi possível realizar a reserva: Usuário já reservou este livro." + fimDeLinha);
+		}
+		else if (!livro.existeExemplarNaoReservado()) {
+			System.out.println("Não foi possível realizar a reserva: Todos exemplares estão reservados."+ fimDeLinha);
+		}
+		else {
+			Reserva res = user.efetuarReserva(livro);			
+			if (res == null) {
+				System.out.println("Não foi possível realizar a reserva: Usuário atingiu limite máximo de 3 reservas."+fimDeLinha);
+			}
+			else {
+			livro.addReserva(res);
+			System.out.println("O usuário "+user.getNome()+" reservou o livro "+livro.getTitulo() + fimDeLinha);
+			}
+		}
 	}
 	
 	public void observar(String idUser, String idLivro) {
 		Usuario user = getUserByID(idUser);
 		Livro livro = getLivroByID(idLivro);
-		//TODO
+		livro.registrarObservador(user);
 	}
 	
 	public void consultarLivro(String idLivro) {

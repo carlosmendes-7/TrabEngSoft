@@ -35,6 +35,10 @@ public class Livro extends Observavel{
 		return titulo;
 	}
 	
+	public int getQtdReservas() {
+		return reservas.size();
+	}
+	
 	@Override
 	public String toString() {
 		final String fimDeLinha = System.getProperty("line.separator");
@@ -100,4 +104,14 @@ public class Livro extends Observavel{
 		exemplar.setEmprestimo(emprestimo);
 	}
 	
+	public void addReserva(Reserva res) {
+		reservas.add(res);
+		if (this.getQtdReservas() > 2) {
+			this.notificarObservadores();
+		}
+	}
+	
+	public void removeReserva(Reserva res) {
+		reservas.remove(res);
+	}
 }

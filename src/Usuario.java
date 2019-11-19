@@ -45,6 +45,10 @@ public class Usuario {
 	public int getQtdEmprestimosAtuais() {
 		return emprestimosAtuais.size();
 	}
+	
+	public int getQtdReservas() {
+		return reservas.size();
+	}
 
 	public Emprestimo getEmprestimoDoLivro(Livro livro) {
 		Iterator<Emprestimo> emp = emprestimosAtuais.iterator();
@@ -61,26 +65,17 @@ public class Usuario {
 		Iterator<Reserva> res = reservas.iterator();
 		while(res.hasNext()) {
 			Reserva reserva = res.next();
-			if(reserva.getLivro() == livro)
+			if(livro == reserva.getLivro())
 				return true;
 		}
 		return false;
 	}
 
 	public Emprestimo efetuarEmprestimo(Livro livro) {
-		Iterator<Reserva> res = reservas.iterator();
-		while(res.hasNext()) {
-			Reserva reserva = res.next();
-			if(livro == reserva.getLivro()) {
-				reservas.remove(reserva);
-				break;
-			}		
-		}
+		deletarReservaPara(livro);
 		//TODO: criar emprestimo com data de devolucao baseada na qtd de dias do TipoUsuario
 		Emprestimo emprestimo = new Emprestimo(this, livro, new Date(), dataEntrega(new Date(), tipo.getTempoEmprestimo()));
-		
 		emprestimosAtuais.add(emprestimo);
-		
 		return emprestimo;
 	}
 	
@@ -103,5 +98,27 @@ public class Usuario {
 				}		
 			}
 	 }
+	 
+	 public Reserva efetuarReserva(Livro livro) {
+			if (reservas.size()<3) {
+				Reserva res = new Reserva(new Date(), livro, this);
+				reservas.add(res);
+				return res;
+			}
+		return null;
+	 }
+	 
+	 public void deletarReservaPara(Livro livro) {
+			Iterator<Reserva> res = reservas.iterator();
+			while(res.hasNext()) {
+				Reserva reserva = res.next();
+				if(livro == reserva.getLivro()) {
+					reservas.remove(reserva);
+					break;
+				}		
+			}
+	 }
+	 
+	 
 
 }
