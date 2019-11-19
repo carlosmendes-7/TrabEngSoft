@@ -34,8 +34,10 @@ public class Usuario {
 	public boolean devendoEmAtraso() {
 		Iterator<Emprestimo> emp = emprestimosAtuais.iterator();
 		while(emp.hasNext()) {
-			if(emp.next().getDataDevolucaoDevida().before(new Date()));
+			Emprestimo atual = emp.next();
+			if((atual.getDataDevolucaoDevida()).before(new Date())) {
 				return true;
+			}
 		}
 		return false;
 	}
@@ -89,6 +91,17 @@ public class Usuario {
 		 calendario.set(Calendar.HOUR_OF_DAY, 23);
 		 dt =  calendario.getTime();
 		 return dt;
+	 }
+	 
+	 public void efetuarDevolucao(Emprestimo emprestimo) {
+			Iterator<Emprestimo> empAtuais = emprestimosAtuais.iterator();
+			while(empAtuais.hasNext()) {
+				Emprestimo emp = empAtuais.next();
+				if(emprestimo == emp) {
+					emprestimosAtuais.remove(emprestimo);
+					break;
+				}		
+			}
 	 }
 
 }

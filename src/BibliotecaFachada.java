@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -6,6 +7,7 @@ public class BibliotecaFachada {
 	private static BibliotecaFachada instancia;
 	private List<Usuario> usuarios = new ArrayList<Usuario>();
 	private List<Livro> livros = new ArrayList<Livro>();
+	private Exemplar Exemplar ;
 	
 	private BibliotecaFachada() {
 		usuarios.add(new Usuario("123", "João da Silva", new Graduacao()));
@@ -82,9 +84,19 @@ public class BibliotecaFachada {
 	}
 	
 	public void devolver(String idUser, String idLivro) {
+		final String fimDeLinha = System.getProperty("line.separator");		
 		Usuario user = getUserByID(idUser);
 		Livro livro = getLivroByID(idLivro);
-		//TODO
+		Emprestimo emp = user.getEmprestimoDoLivro(livro);
+		if (emp == null) {
+			System.out.println("Não foi possivel devolver o livro: Este livro não foi emprestado para este usuário!" + fimDeLinha);
+		}
+		else {
+		//emp.setDataDevolucaoEfetiva(new Date());
+			user.efetuarDevolucao(emp);
+			livro.devolucaoExemplarEmprestado(livro.getExemplarEmprestado(emp));			
+			System.out.println("O usuário "+user.getNome()+" devolveu o livro "+livro.getTitulo() + fimDeLinha);
+		}
 	}
 	
 	public void reservar(String idUser, String idLivro) {

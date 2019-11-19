@@ -80,10 +80,24 @@ public class Livro extends Observavel{
 		}
 		return null;
 	}
+	
+	public Exemplar getExemplarEmprestado(Emprestimo emp) {
+		Iterator<Exemplar> it = exemplares.iterator();
+		while(it.hasNext()) {
+			Exemplar exemplar = it.next();
+			if(exemplar.getEmprestimo() == emp)
+				return exemplar;
+		}
+		return null;
+	}
 
 	public void emprestarExemplar(Exemplar exemplar, Emprestimo emprestimo) {
 		exemplar.setEmprestimo(emprestimo);
 	}
 	
+	public void devolucaoExemplarEmprestado(Exemplar exemplar) {
+		Emprestimo emprestimo = null;
+		exemplar.setEmprestimo(emprestimo);
+	}
 	
 }
