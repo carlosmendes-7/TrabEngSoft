@@ -70,6 +70,7 @@ public class BibliotecaFachada {
 		final String fimDeLinha = System.getProperty("line.separator");
 		Usuario user = getUserByID(idUser);
 		Livro livro = getLivroByID(idLivro);
+		
 		Exemplar exemplar = livro.getExemplarDisponivel();
 		if(exemplar == null) {
 			System.out.println("Não foi possivel realizar emprestimo: não há exemplar disponível!" + fimDeLinha);
@@ -86,6 +87,7 @@ public class BibliotecaFachada {
 		final String fimDeLinha = System.getProperty("line.separator");		
 		Usuario user = getUserByID(idUser);
 		Livro livro = getLivroByID(idLivro);
+		
 		Emprestimo emp = user.getEmprestimoDoLivro(livro);
 		if (emp == null) {
 			System.out.println("Não foi possivel devolver o livro: este livro não foi emprestado para este usuário!" + fimDeLinha);
@@ -121,13 +123,15 @@ public class BibliotecaFachada {
 	}
 	
 	public void observar(String idUser, String idLivro) {
+		final String fimDeLinha = System.getProperty("line.separator");	
 		Usuario user = getUserByID(idUser);
 		Livro livro = getLivroByID(idLivro);
 		if(!(user instanceof Observador)) {
-			System.out.println("Usuario não possui prerrogativa de acompanhar notificacoes!");
+			System.out.println("Usuario não possui prerrogativa de acompanhar notificacoes!" + fimDeLinha);
 			return;
 		}
 		livro.registrarObservador((Observador) user);
+		System.out.println("Usuario adicionado como observador do livro " + livro.getTitulo() + "." + fimDeLinha);
 	}
 	
 	public void consultarLivro(String idLivro) {
@@ -141,10 +145,11 @@ public class BibliotecaFachada {
 	}
 	
 	public void consultarQtdNotificacoes(String idUser) {
+		final String fimDeLinha = System.getProperty("line.separator");
 		Usuario user = getUserByID(idUser);
 		if(user instanceof AcompanhadorDeNotificacoes)
-			System.out.println("Usuario foi notificado " + ((AcompanhadorDeNotificacoes) user).getQtdNotificacoes() + "vezes.");
+			System.out.println("Usuario foi notificado " + ((AcompanhadorDeNotificacoes) user).getQtdNotificacoes() + "vezes." + fimDeLinha);
 		else
-			System.out.println("Usuario não possui prerrogativa de acompanhar notificacoes!");
+			System.out.println("Usuario não possui prerrogativa de acompanhar notificacoes!" + fimDeLinha);
 	}
 }
