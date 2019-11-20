@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -7,7 +6,6 @@ public class BibliotecaFachada {
 	private static BibliotecaFachada instancia;
 	private List<Usuario> usuarios = new ArrayList<Usuario>();
 	private List<Livro> livros = new ArrayList<Livro>();
-	private Exemplar Exemplar ;
 	
 	private BibliotecaFachada() {
 		usuarios.add(new Usuario("123", "João da Silva", new Graduacao()));
@@ -105,19 +103,19 @@ public class BibliotecaFachada {
 		Livro livro = getLivroByID(idLivro);
 		
 		if (user.temReservaPara(livro)) {
-			System.out.println("Não foi possível realizar a reserva: Usuário já reservou este livro." + fimDeLinha);
+			System.out.println("Não foi possível realizar a reserva: usuário já reservou este livro." + fimDeLinha);
 		}
-		else if (!livro.existeExemplarNaoReservado()) {
-			System.out.println("Não foi possível realizar a reserva: Todos exemplares estão reservados."+ fimDeLinha);
-		}
+		//else if (!livro.existeExemplarNaoReservado()) {
+		//	System.out.println("Não foi possível realizar a reserva: Todos exemplares estão reservados."+ fimDeLinha);
+		//} //Isso nao eh impedimento para reserva
 		else {
 			Reserva res = user.efetuarReserva(livro);			
 			if (res == null) {
-				System.out.println("Não foi possível realizar a reserva: Usuário atingiu limite máximo de 3 reservas."+fimDeLinha);
+				System.out.println("Não foi possível realizar a reserva: Usuário atingiu limite máximo de 3 reservas." + fimDeLinha);
 			}
 			else {
-			livro.addReserva(res);
-			System.out.println("O usuário "+user.getNome()+" reservou o livro "+livro.getTitulo() + fimDeLinha);
+				livro.addReserva(res);
+				System.out.println("O usuário " + user.getNome() + " reservou o livro "+ livro.getTitulo() + fimDeLinha);
 			}
 		}
 	}

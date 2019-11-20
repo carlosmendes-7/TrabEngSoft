@@ -95,11 +95,11 @@ public class Usuario {
 	 }
 	 
 	 public Reserva efetuarReserva(Livro livro) {
-			if (reservas.size()<3) {
-				Reserva res = new Reserva(new Date(), livro, this);
-				reservas.add(res);
-				return res;
-			}
+		if (reservas.size()<3) {
+			Reserva res = new Reserva(new Date(), livro, this);
+			reservas.add(res);
+			return res;
+		}
 		return null;
 	 }
 	 

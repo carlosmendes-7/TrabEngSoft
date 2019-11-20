@@ -4,7 +4,6 @@ public class Exemplar {
 	private Emprestimo emprestimo;
 	
 	public Exemplar(String id) {
-		super();
 		this.id = id;
 		this.emprestimo = null;
 	}

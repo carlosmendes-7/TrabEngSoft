@@ -6,7 +6,6 @@ public class Reserva {
 	private Usuario user;
 	
 	public Reserva(Date data, Livro livro, Usuario user) {
-		super();
 		this.data = data;
 		this.livro = livro;
 		this.user = user;
