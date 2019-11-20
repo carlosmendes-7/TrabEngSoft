@@ -4,7 +4,7 @@ public class ComandoConsultarUsuario extends Comando {
 
 	@Override
 	public String executar(ArrayList<String> args, BibliotecaFachada biblio) {
-		// TODO Auto-generated method stub
+		biblio.consultarUsuario(args.get(0));
 		return null;
 	}
 

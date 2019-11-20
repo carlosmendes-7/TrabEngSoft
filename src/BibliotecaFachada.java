@@ -80,6 +80,7 @@ public class BibliotecaFachada {
 		if(user.podePegarEmprestado(livro)) {
 			Emprestimo emprestimo = user.efetuarEmprestimo(livro);
 			livro.emprestarExemplar(exemplar, emprestimo);
+			System.out.println("O usuário "+ user.getNome() +" pegou o livro "+ livro.getTitulo() + " emprestado." + fimDeLinha);
 		}
 	}
 	
@@ -89,13 +90,12 @@ public class BibliotecaFachada {
 		Livro livro = getLivroByID(idLivro);
 		Emprestimo emp = user.getEmprestimoDoLivro(livro);
 		if (emp == null) {
-			System.out.println("Não foi possivel devolver o livro: Este livro não foi emprestado para este usuário!" + fimDeLinha);
+			System.out.println("Não foi possivel devolver o livro: este livro não foi emprestado para este usuário!" + fimDeLinha);
 		}
 		else {
-		//emp.setDataDevolucaoEfetiva(new Date());
 			user.efetuarDevolucao(emp);
-			livro.devolucaoExemplarEmprestado(livro.getExemplarEmprestado(emp));			
-			System.out.println("O usuário "+user.getNome()+" devolveu o livro "+livro.getTitulo() + fimDeLinha);
+			livro.devolucaoExemplarEmprestado(emp);			
+			System.out.println("O usuário "+ user.getNome() +" devolveu o livro "+ livro.getTitulo() + fimDeLinha);
 		}
 	}
 	
@@ -125,7 +125,11 @@ public class BibliotecaFachada {
 	public void observar(String idUser, String idLivro) {
 		Usuario user = getUserByID(idUser);
 		Livro livro = getLivroByID(idLivro);
-		livro.registrarObservador(user);
+		if(!(user instanceof Observador)) {
+			System.out.println("Usuario não possui prerrogativa de acompanhar notificacoes!");
+			return;
+		}
+		livro.registrarObservador((Observador) user);
 	}
 	
 	public void consultarLivro(String idLivro) {
@@ -135,7 +139,7 @@ public class BibliotecaFachada {
 	
 	public void consultarUsuario(String idUser) {
 		Usuario user = getUserByID(idUser);
-		//TODO
+		System.out.println(user);
 	}
 	
 	public void consultarQtdNotificacoes(String idUser) {

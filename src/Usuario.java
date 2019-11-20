@@ -84,19 +84,14 @@ public class Usuario {
 		 calendario.setTime(dt); 
 		 calendario.add(Calendar.DATE, entrega);
 		 calendario.set(Calendar.HOUR_OF_DAY, 23);
-		 dt =  calendario.getTime();
+		 dt = calendario.getTime();
 		 return dt;
 	 }
 	 
 	 public void efetuarDevolucao(Emprestimo emprestimo) {
-			Iterator<Emprestimo> empAtuais = emprestimosAtuais.iterator();
-			while(empAtuais.hasNext()) {
-				Emprestimo emp = empAtuais.next();
-				if(emprestimo == emp) {
-					emprestimosAtuais.remove(emprestimo);
-					break;
-				}		
-			}
+		emprestimo.setDataDevolucaoEfetiva(new Date());
+		historico.add(emprestimo);
+		emprestimosAtuais.remove(emprestimo);
 	 }
 	 
 	 public Reserva efetuarReserva(Livro livro) {
@@ -118,6 +113,46 @@ public class Usuario {
 				}		
 			}
 	 }
+
+	@Override
+	public String toString() {
+		final String fimDeLinha = System.getProperty("line.separator");
+		
+		String string = "Nome: " + getNome() + "." + fimDeLinha;
+		
+		string += "Usuario possui " +  emprestimosAtuais.size() + " emprestimo(s) corrente(s)." + fimDeLinha;
+		if(!emprestimosAtuais.isEmpty())
+			string += "Emprestimos correntes:" + fimDeLinha;
+		Iterator<Emprestimo> emp = emprestimosAtuais.iterator();
+		while(emp.hasNext()) {
+			Emprestimo atual = emp.next();
+			string += "\tTitulo do livro: " + atual.getLivro().getTitulo() + fimDeLinha;
+			string += "\tData do emprestimo: " + atual.getDataEmprestimo() + fimDeLinha;
+			string += "\tDevolucao devida para: " + atual.getDataDevolucaoDevida() + fimDeLinha + fimDeLinha;
+		}
+		
+		string += "Usuario realizou " +  historico.size() + " emprestimo(s) passado(s)." + fimDeLinha;
+		if(!historico.isEmpty())
+			string += "Emprestimos finalizados:" + fimDeLinha;
+		Iterator<Emprestimo> his = historico.iterator();
+		while(his.hasNext()) {
+			Emprestimo pass = his.next();
+			string += "\tTitulo do livro: " + pass.getLivro().getTitulo() + fimDeLinha;
+			string += "\tData do emprestimo: " + pass.getDataEmprestimo() + fimDeLinha;
+			string += "\tDevolucao realizada em: " + pass.getDataDevolucaoEfetiva() + fimDeLinha + fimDeLinha;
+		}
+		
+		string += "Usuario tem " +  reservas.size() + " reserva(s) em seu nome." + fimDeLinha;
+		if(!reservas.isEmpty())
+			string += "Reservas:" + fimDeLinha;
+		Iterator<Reserva> res = reservas.iterator();
+		while(res.hasNext()) {
+			Reserva reserva = res.next();
+			string += "\tTitulo do livro: " + reserva.getLivro().getTitulo() + fimDeLinha;
+			string += "\tData de solicitacao: " + reserva.getData() + fimDeLinha + fimDeLinha;
+		}
+		return string;
+	}
 	 
 	 
 

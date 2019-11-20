@@ -45,7 +45,7 @@ public class Livro extends Observavel{
 		
 		String string = "Titulo: " + getTitulo() + "." + fimDeLinha;
 		
-		string += "Livro tem " + reservas.size() + " reservas." + fimDeLinha;
+		string += "Livro tem " + reservas.size() + " reserva(s)." + fimDeLinha;
 		if(!reservas.isEmpty())
 			string += "Reservado por:" + fimDeLinha;
 		Iterator<Reserva> res = reservas.iterator();
@@ -85,7 +85,7 @@ public class Livro extends Observavel{
 		return null;
 	}
 	
-	public Exemplar getExemplarEmprestado(Emprestimo emp) {
+	private Exemplar getExemplarEmprestado(Emprestimo emp) {
 		Iterator<Exemplar> it = exemplares.iterator();
 		while(it.hasNext()) {
 			Exemplar exemplar = it.next();
@@ -99,14 +99,14 @@ public class Livro extends Observavel{
 		exemplar.setEmprestimo(emprestimo);
 	}
 	
-	public void devolucaoExemplarEmprestado(Exemplar exemplar) {
-		Emprestimo emprestimo = null;
-		exemplar.setEmprestimo(emprestimo);
+	public void devolucaoExemplarEmprestado(Emprestimo emp) {
+		Exemplar exemplar = this.getExemplarEmprestado(emp);
+		exemplar.setEmprestimo(null);
 	}
 	
 	public void addReserva(Reserva res) {
 		reservas.add(res);
-		if (this.getQtdReservas() > 2) {
+		if(this.getQtdReservas() == 3) {
 			this.notificarObservadores();
 		}
 	}
