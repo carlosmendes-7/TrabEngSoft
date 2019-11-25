@@ -74,15 +74,15 @@ public class Usuario {
 	public Emprestimo efetuarEmprestimo(Livro livro) {
 		deletarReservaPara(livro);
 		//TODO: criar emprestimo com data de devolucao baseada na qtd de dias do TipoUsuario
-		Emprestimo emprestimo = new Emprestimo(this, livro, new Date(), dataEntrega(new Date(), tipo.getTempoEmprestimo()));
+		Emprestimo emprestimo = new Emprestimo(this, livro, new Date(), dataEntrega(new Date()));
 		emprestimosAtuais.add(emprestimo);
 		return emprestimo;
 	}
 	
-	 public Date dataEntrega(Date dt, int entrega) {
+	 private Date dataEntrega(Date dt) {
 		 Calendar calendario = Calendar.getInstance();
 		 calendario.setTime(dt); 
-		 calendario.add(Calendar.DATE, entrega);
+		 calendario.add(Calendar.DATE, tipo.getTempoEmprestimo());
 		 calendario.set(Calendar.HOUR_OF_DAY, 23);
 		 dt = calendario.getTime();
 		 return dt;
@@ -154,6 +154,4 @@ public class Usuario {
 		return string;
 	}
 	 
-	 
-
 }
