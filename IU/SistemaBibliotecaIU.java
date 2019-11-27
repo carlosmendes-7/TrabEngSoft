@@ -35,7 +35,7 @@ public class SistemaBibliotecaIU {
       		
         		arg.add(string.next());
         		arg.add(string.next());
-        		emp.executar(arg, BibliotecaFachada.getInstance());
+        		emp.executar(arg);
         	}
         	else if (servico.equals("dev")) {
         		ArrayList<String> arg = new ArrayList<String>();
@@ -43,7 +43,7 @@ public class SistemaBibliotecaIU {
       		
         		arg.add(string.next());
         		arg.add(string.next());
-        		dev.executar(arg, BibliotecaFachada.getInstance());
+        		dev.executar(arg);
         	}
         	else if (servico.equals("res")) {
         		ArrayList<String> arg = new ArrayList<String>();
@@ -51,7 +51,7 @@ public class SistemaBibliotecaIU {
       		
         		arg.add(string.next());
         		arg.add(string.next());
-        		res.executar(arg, BibliotecaFachada.getInstance());
+        		res.executar(arg);
         	}
            	else if (servico.equals("obs")) {
         		ArrayList<String> arg = new ArrayList<String>();
@@ -59,28 +59,28 @@ public class SistemaBibliotecaIU {
       		
         		arg.add(string.next());
         		arg.add(string.next());
-        		obs.executar(arg, BibliotecaFachada.getInstance());
+        		obs.executar(arg);
         	}
            	else if (servico.equals("liv")) {
         		ArrayList<String> arg = new ArrayList<String>();
         		Comando liv = comandos.get(servico);
         		
         		arg.add(string.next());
-        		liv.executar(arg, BibliotecaFachada.getInstance());
+        		liv.executar(arg);
            	}
            	else if (servico.equals("usu")) {
         		ArrayList<String> arg = new ArrayList<String>();
         		Comando usu = comandos.get(servico);
         		
         		arg.add(string.next());
-        		usu.executar(arg, BibliotecaFachada.getInstance());
+        		usu.executar(arg);
            	}
            	else if (servico.equals("nft")) {
         		ArrayList<String> arg = new ArrayList<String>();
         		Comando nft = comandos.get(servico);
         		
         		arg.add(string.next());
-        		nft.executar(arg, BibliotecaFachada.getInstance());
+        		nft.executar(arg);
            	}
            	else if (servico.equals("sair")) {
            		System.out.println("Encerrando sistema da Biblioteca...");
