@@ -23,7 +23,7 @@ public class SistemaBibliotecaIU {
         System.out.println("Observar Livro - ('obs codigoDoUsuario codigoDoLivro')");
         System.out.println("Consultar Livro - ('liv codigoDoLivro')");
         System.out.println("Consultar Usuário - ('usu codigoDoUsuario')");
-        System.out.println("Consultar quantidade de Notificações - ('nft codigoDoUsuario')");
+        System.out.println("Consultar quantidade de Notificações - ('ntf codigoDoUsuario')");
         
         Scanner string = new Scanner(System.in);
         String servico = string.next();

@@ -131,7 +131,7 @@ public class BibliotecaFachada {
 			return;
 		}
 		livro.registrarObservador((Observador) user);
-		System.out.println("Usuario adicionado como observador do livro " + livro.getTitulo() + "." + fimDeLinha);
+		System.out.println("Usuario " + user.getNome() + " adicionado como observador do livro " + livro.getTitulo() + "." + fimDeLinha);
 	}
 	
 	public void consultarLivro(String idLivro) {
@@ -148,7 +148,7 @@ public class BibliotecaFachada {
 		final String fimDeLinha = System.getProperty("line.separator");
 		Usuario user = getUserByID(idUser);
 		if(user instanceof AcompanhadorDeNotificacoes)
-			System.out.println("Usuario foi notificado " + ((AcompanhadorDeNotificacoes) user).getQtdNotificacoes() + "vezes." + fimDeLinha);
+			System.out.println("Usuario foi notificado " + ((AcompanhadorDeNotificacoes) user).getQtdNotificacoes() + " vez(es)." + fimDeLinha);
 		else
 			System.out.println("Usuario não possui prerrogativa de acompanhar notificacoes!" + fimDeLinha);
 	}
