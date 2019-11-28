@@ -26,67 +26,21 @@ public class SistemaBibliotecaIU {
         System.out.println("Consultar quantidade de Notificações - ('nft codigoDoUsuario')");
         
         Scanner string = new Scanner(System.in);
-        String servico;
-        do {
+        String servico = string.next();
+        while (!servico.equals("sair")){
+            Comando emp = comandos.get(servico);
+            
+            ArrayList<String> arg = new ArrayList<String>();
+            
+            Scanner argumentos = new Scanner(string.nextLine());
+            while(argumentos.hasNext()) {
+            	arg.add(argumentos.next());
+            }
+            argumentos.close();
+            
+            emp.executar(arg);
             servico = string.next();
-    		if (servico.equals("emp")) {
-        		ArrayList<String> arg = new ArrayList<String>();
-        		Comando emp = comandos.get(servico);
-      		
-        		arg.add(string.next());
-        		arg.add(string.next());
-        		emp.executar(arg);
-        	}
-        	else if (servico.equals("dev")) {
-        		ArrayList<String> arg = new ArrayList<String>();
-        		Comando dev = comandos.get(servico);
-      		
-        		arg.add(string.next());
-        		arg.add(string.next());
-        		dev.executar(arg);
-        	}
-        	else if (servico.equals("res")) {
-        		ArrayList<String> arg = new ArrayList<String>();
-        		Comando res = comandos.get(servico);
-      		
-        		arg.add(string.next());
-        		arg.add(string.next());
-        		res.executar(arg);
-        	}
-           	else if (servico.equals("obs")) {
-        		ArrayList<String> arg = new ArrayList<String>();
-        		Comando obs = comandos.get(servico);
-      		
-        		arg.add(string.next());
-        		arg.add(string.next());
-        		obs.executar(arg);
-        	}
-           	else if (servico.equals("liv")) {
-        		ArrayList<String> arg = new ArrayList<String>();
-        		Comando liv = comandos.get(servico);
-        		
-        		arg.add(string.next());
-        		liv.executar(arg);
-           	}
-           	else if (servico.equals("usu")) {
-        		ArrayList<String> arg = new ArrayList<String>();
-        		Comando usu = comandos.get(servico);
-        		
-        		arg.add(string.next());
-        		usu.executar(arg);
-           	}
-           	else if (servico.equals("nft")) {
-        		ArrayList<String> arg = new ArrayList<String>();
-        		Comando nft = comandos.get(servico);
-        		
-        		arg.add(string.next());
-        		nft.executar(arg);
-           	}
-           	else if (servico.equals("sair")) {
-           		System.out.println("Encerrando sistema da Biblioteca...");
-           	}
-           	else System.out.println("Escolha um comando válido, ou digite 'sair' para finalizar");
-        } while (!servico.equals("sair"));
+    	 }
         
         string.close();
 	}

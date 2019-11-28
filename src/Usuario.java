@@ -72,8 +72,15 @@ public class Usuario {
 	}
 
 	public Emprestimo efetuarEmprestimo(Livro livro) {
-		deletarReservaPara(livro);
-		//TODO: criar emprestimo com data de devolucao baseada na qtd de dias do TipoUsuario
+		Iterator<Reserva> res = reservas.iterator();
+		while(res.hasNext()) {
+			Reserva reserva = res.next();
+			if(livro == reserva.getLivro()) {
+				livro.removeReserva(reserva);
+				reservas.remove(reserva);
+				break;
+			}
+		}
 		Emprestimo emprestimo = new Emprestimo(this, livro, new Date(), dataEntrega(new Date()));
 		emprestimosAtuais.add(emprestimo);
 		return emprestimo;
@@ -101,17 +108,6 @@ public class Usuario {
 			return res;
 		}
 		return null;
-	 }
-	 
-	 public void deletarReservaPara(Livro livro) {
-			Iterator<Reserva> res = reservas.iterator();
-			while(res.hasNext()) {
-				Reserva reserva = res.next();
-				if(livro == reserva.getLivro()) {
-					reservas.remove(reserva);
-					break;
-				}		
-			}
 	 }
 
 	@Override
